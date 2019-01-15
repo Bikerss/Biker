@@ -30,7 +30,7 @@ get_header();
 			endif;
 
 			/* Start the Loop */
-			for ( have_posts() ) :
+			while ( have_posts() ) :
 				the_post();
 
 				/*
@@ -40,7 +40,7 @@ get_header();
 				 */
 				get_template_part( 'template-parts/content', get_post_type() );
 
-			endloop;
+			endwhile ;
 
 			the_posts_navigation();
 
