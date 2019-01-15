@@ -74,8 +74,8 @@ if ( ! function_exists( 'jcu_setup' ) ) :
 		 * @link https://codex.wordpress.org/Theme_Logo
 		 */
 		add_theme_support( 'custom-logo', array(
-			'height'      => 250,
-			'width'       => 250,
+			'height'      => 350,
+			'width'       => 350,
 			'flex-width'  => true,
 			'flex-height' => true,
 		) );
