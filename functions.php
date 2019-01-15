@@ -44,7 +44,7 @@ if ( ! function_exists( 'jcu_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'menu-1' => esc_html__( 'Primary', 'jcu' ),
+			'menu-1' => esc_html__( 'Secondary', 'jcu' ),
 		) );
 
 		/*
@@ -74,8 +74,8 @@ if ( ! function_exists( 'jcu_setup' ) ) :
 		 * @link https://codex.wordpress.org/Theme_Logo
 		 */
 		add_theme_support( 'custom-logo', array(
-			'height'      => 350,
-			'width'       => 350,
+			'height'      => 250,
+			'width'       => 250,
 			'flex-width'  => true,
 			'flex-height' => true,
 		) );
