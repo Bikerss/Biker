@@ -83,6 +83,37 @@ if ( ! function_exists( 'jcu_setup' ) ) :
 endif;
 add_action( 'after_setup_theme', 'jcu_setup' );
 
+
+/**
+ * Register custom fonts.
+ */
+function jcu_fonts_url() {
+	$fonts_url = '';
+
+	/*
+	 * Translators: If there are characters in your language that are not
+	 * supported by Libre Franklin, translate this to 'off'. Do not translate
+	 * into your own language.
+	 */
+	$libre_franklin = _x( 'on', 'Libre Franklin font: on or off', 'jcu' );
+
+	if ( 'off' !== $libre_franklin ) {
+		$font_families = array();
+
+		$font_families[] = 'Libre Franklin:300,300i,400,400i,600,600i,800,800i';
+
+		$query_args = array(
+			'family' => urlencode( implode( '|', $font_families ) ),
+			'subset' => urlencode( 'latin,latin-ext' ),
+		);
+
+		$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
+	}
+
+	return esc_url_raw( $fonts_url );
+}
+
+
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *
@@ -120,6 +151,9 @@ add_action( 'widgets_init', 'jcu_widgets_init' );
  * Enqueue scripts and styles.
  */
 function jcu_scripts() {
+	//google fonts
+	wp_enqueue_style('jcu-fonts', 'https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i|Source+Sans+Pro:400,400i,600,900' );
+	
 	wp_enqueue_style( 'jcu-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'jcu-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
@@ -133,7 +167,7 @@ function jcu_scripts() {
 add_action( 'wp_enqueue_scripts', 'jcu_scripts' );
 
 /**
- * Implement the Custom Header features.
+ * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';
 
